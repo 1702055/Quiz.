@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz em JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #00bcd4; /* Cor azul piscina */
+      margin: 0;
+      padding: 0;
+    }
+
+    #quiz-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .question-container {
+      background-color: #fff; /* Cor de fundo branca */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px;
+      color: #000; /* Cor do texto preta */
+      width: 700px; /* Largura da caixa */
+    }
+
+    .question-box {
+      border-radius: 10px;
+      border: 2px solid #000; /* Cor da borda preta */
+      padding: 20px;
+      margin-bottom: 1px;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .option-box {
+      background-color: #f0f0f0; /* Cor de fundo cinza claro */
+      color: #000; /* Cor do texto preta */
+      border-radius: 10px;
+      margin: 5px;
+      padding: 10px;
+      width: calc(50% - 10px); /* Largura das opções */
+      cursor: pointer;
+    }
+
+    .result-container {
+      background-color: #fff; /* Cor de fundo branca */
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px;
+      color: #000; /* Cor do texto preta */
+      width: 700px; /* Largura da caixa */
+    }
+  </style>
+</head>
+<body>
+  <div id="quiz-container">
+    <div class="question-container">
+      <div class="question-box">
+        <h2 id="question"></h2>
+        <div id="options" class="options"></div>
+      </div>
+    </div>
+
+    <div id="result-container" class="result-container" style="display: none;">
+      <h2>Resultado do Quiz</h2>
+      <p id="correct-answer"></p>
+      <p id="wrong-answer"></p>
+      <button id="restart-btn">Voltar para o Início</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "O que é o barramento de dados em um computador?",
+        options: ["Um tipo de barramento utilizado para transportar sinais de controle entre diferentes componentes do sistema", "Uma unidade de processamento especializada em operações de entrada e saída", "Um canal de comunicação utilizado exclusivamente para transferir dados entre a CPU e a memória", "Uma via de comunicação por onde os dados são transferidos entre diferentes partes do sistema."],
+        answer: "Uma via de comunicação por onde os dados são transferidos entre diferentes partes do sistema"
+      },
+      {
+        question: "No modelo de Von Neumann, qual é a função da unidade de controle?",
+        options: ["Interpretar e executar instruções de programa", "Executar operações aritméticas", "Realizar operações lógicas em dados", "Gerenciar o fluxo de dados entre a CPU e a memória"],
+        answer: "Interpretar e executar instruções de programa"
+      },
+      {
+        question: "O que são números binários?",
+        options: ["Números que utilizam os dígitos de 1 a 9", "Números que utilizam apenas os dígitos 0 e 1", "Números que utilizam os dígitos de 0 a 9", "Números que utilizam apenas os dígitos 0, 1, 2 e 3"],
+        answer: "Números que utilizam apenas os dígitos 0 e 1"
+      },
+      {
+        question: "Qual é o valor do número binário 1011 em decimal?",
+        options: ["8", "9", "10", "11"],
+        answer: "11"
+      }
+    ];
+
+    let currentQuestion = 0;
+    let correctAnswers = 0;
+    let wrongAnswers = 0;
+
+    const questionElement = document.getElementById('question');
+    const optionsElement = document.getElementById('options');
+    const resultContainer = document.getElementById('result-container');
+    const correctAnswerElement = document.getElementById('correct-answer');
+    const wrongAnswerElement = document.getElementById('wrong-answer');
+    const restartButton = document.getElementById('restart-btn');
+
+    function showQuestion(questionIndex) {
+      const q = questions[questionIndex];
+      questionElement.textContent = q.question;
+      optionsElement.innerHTML = '';
+      q.options.forEach(option => {
+        const button = document.createElement('button');
+        button.textContent = option;
+        button.addEventListener('click', () => checkAnswer(option));
+        button.classList.add('option-box');
+        optionsElement.appendChild(button);
+      });
+    }
+
+    function checkAnswer(selectedOption) {
+      const currentQ = questions[currentQuestion];
+      if (selectedOption === currentQ.answer) {
+        correctAnswers++;
+      } else {
+        wrongAnswers++;
+      }
+      showNextQuestion();
+    }
+
+    function showNextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        showQuestion(currentQuestion);
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      resultContainer.style.display = 'block';
+      correctAnswerElement.textContent = `Respostas corretas: ${correctAnswers}`;
+      wrongAnswerElement.textContent = `Respostas erradas: ${wrongAnswers}`;
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      correctAnswers = 0;
+      wrongAnswers = 0;
+      resultContainer.style.display = 'none';
+      showQuestion(currentQuestion);
+    }
+
+    restartButton.addEventListener('click', restartQuiz);
+
+    showQuestion(currentQuestion);
+  </script>
+</body>
+</html>
+
+
+   
+
+
+
+
+
+   
+
+
+     
+
+
+
+
+
+
+
+
+

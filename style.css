@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #00bcd4; /* Cor azul piscina */
+    margin: 0;
+    padding: 0;
+  }
+  
+  #quiz-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .question-container {
+    background-color: #fff; /* Cor de fundo branca */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    color: #000; /* Cor do texto preta */
+    width: 500px; /* Largura da caixa */
+  }
+  
+  .question-box {
+    border-radius: 10px;
+    border: 2px solid #000; /* Cor da borda preta */
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .options {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .option-box {
+    background-color: #f0f0f0; /* Cor de fundo cinza claro */
+    color: #000; /* Cor do texto preta */
+    border-radius: 10px;
+    margin: 5px;
+    padding: 10px;
+    width: calc(50% - 10px); /* Largura das opções */
+    cursor: pointer;
+  }
+  
+  .next-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Cor de fundo azul */
+    color: #fff; /* Cor do texto branco */
+    cursor: pointer;
+    float: right; /* Alinhamento à direita */
+  }
+  
+  .result-container {
+    background-color: #fff; /* Cor de fundo branca */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    color: #000; /* Cor do texto preta */
+    width: 500px; /* Largura da caixa */
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
